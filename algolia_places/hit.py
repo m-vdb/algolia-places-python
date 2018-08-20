@@ -24,15 +24,12 @@ class AlgoliaPlacesHit(BaseObject):
         'postcode',
     ]
 
-    def __init__(self, hit):
-        self.hit = hit
-
     @property
     def id(self):  # pylint: disable=invalid-name
         """
         Shortcut for id property.
         """
-        return self.hit['objectID']
+        return self.data['objectID']
 
     @property
     def geoloc(self):
@@ -40,7 +37,7 @@ class AlgoliaPlacesHit(BaseObject):
         Allow access to `geoloc` property without the starting underscore,
         underscores denote private properties in Python.
         """
-        return self.hit['_geoloc']
+        return self.data['_geoloc']
 
     @property
     def tags(self):
@@ -48,4 +45,4 @@ class AlgoliaPlacesHit(BaseObject):
         Allow access to `tags` property without the starting underscore,
         underscores denote private properties in Python.
         """
-        return self.hit['_tags']
+        return self.data['_tags']
