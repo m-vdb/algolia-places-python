@@ -1,6 +1,5 @@
 import unittest
 
-
 from algolia_places.struct import BaseObject
 
 

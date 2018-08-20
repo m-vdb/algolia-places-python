@@ -9,13 +9,12 @@ class AlgoliaPlacesResponse(BaseObject):  # pylint: disable=too-few-public-metho
     """
     DIRECT_LOOKUPS = [
         'degradedQuery',
-        'hits',
         'nbHits',
         'params',
         'processingTimeMS',
         'query',
     ]
 
-    def __init__(self, api_response):
-        self.api_response = api_response
-        self.hits = [AlgoliaPlacesHit(hit) for hit in api_response['hits']]
+    def __init__(self, data):
+        super().__init__(data)
+        self.hits = [AlgoliaPlacesHit(hit) for hit in self.data['hits']]
