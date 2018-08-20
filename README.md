@@ -1,6 +1,10 @@
 # algolia-places-python
 API wrapper for Algolia Places API. This module **only supports Python 3**.
 
+[![Build Status](https://travis-ci.org/m-vdb/algolia-places-python.svg?branch=master)](https://travis-ci.org/m-vdb/algolia-places-python)
+[![Coverage Status](https://coveralls.io/repos/github/m-vdb/algolia-places-python/badge.svg?branch=master)](https://coveralls.io/github/m-vdb/algolia-places-python?branch=master)
+[![Pypi version](https://img.shields.io/pypi/v/algolia-places-python.svg)](https://pypi.python.org/pypi/algolia-places-python)
+
 ## Installation
 
 ```
