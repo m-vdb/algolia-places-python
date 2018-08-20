@@ -34,3 +34,11 @@ for hit in resp.hits:
   # do something with hit
   pass
 ```
+
+## How to
+
+Publish on pypi:
+
+```bash
+$ python setup.py sdist upload
+```
