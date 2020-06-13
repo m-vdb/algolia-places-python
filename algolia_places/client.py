@@ -5,12 +5,12 @@ import requests
 
 from .response import AlgoliaPlacesResponse
 
-
 class AlgoliaPlacesClient:
     """
     Client for Algolia Places API.
     """
     api_url = 'https://places-dsn.algolia.net/1/places/query'
+    api_reverse_url = 'https://places-dsn.algolia.net/1/places/reverse'
 
     def __init__(self, app_id, api_key):
         """
@@ -45,5 +45,17 @@ class AlgoliaPlacesClient:
         body.update(query=query, **kwargs)
         resp = self.session.post(self.api_url, data=json.dumps(body))
 
+        resp.raise_for_status()
+        return AlgoliaPlacesResponse(resp.json())
+
+    def reverse(self, lat, lon):
+        """
+        Reverse geocode position on Algolia Places API.
+        """
+        query_vars = self._defaults.copy()
+        query_vars.update({
+            'aroundLatLng': str(lat) + ',' + str(lon)
+        })
+        resp = self.session.get(self.api_reverse_url, params=query_vars)
         resp.raise_for_status()
         return AlgoliaPlacesResponse(resp.json())

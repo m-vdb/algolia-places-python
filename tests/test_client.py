@@ -88,3 +88,21 @@ class AlgoliaPlacesClientTestCase(unittest.TestCase):
         session_post.return_value.json.assert_called_with()
         self.assertIsInstance(resp, AlgoliaPlacesResponse)
         self.assertEqual(len(resp.hits), 2)
+
+    @patch.object(requests.Session, 'get')
+    def test_reverse(self, session_get):
+        session_get.return_value.json.return_value = {
+            'hits': [
+                {'objectID': 1337},
+                {'objectID': 1338},
+            ]
+        }
+
+        resp = self.client.reverse('40', '40')
+        session_get.assert_called_with(self.client.api_reverse_url, params={
+            'aroundLatLng': '40,40'
+        })
+        session_get.return_value.raise_for_status.assert_called_with()
+        session_get.return_value.json.assert_called_with()
+        self.assertIsInstance(resp, AlgoliaPlacesResponse)
+        self.assertEqual(len(resp.hits), 2)
